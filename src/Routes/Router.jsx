@@ -5,11 +5,14 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Games from "../Pages/Games";
 import GameDetails from "../Pages/GameDetails";
+import indie from "../Pages/indie";
+import NotFound from "../Pages/NotFound";
 
 const router = createBrowserRouter([
     {
         path:'/',
         Component: MainLayout,
+        errorElement: <NotFound />,
         children: [
             {
                 index: true,
@@ -30,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path: '/games/:id',
                 Component: GameDetails
+            },
+            {
+                path:'/indie',
+                Component: indie
             }
         ]
 
