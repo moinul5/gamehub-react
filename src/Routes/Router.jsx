@@ -3,6 +3,8 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import Games from "../Pages/Games";
+import GameDetails from "../Pages/GameDetails";
 
 const router = createBrowserRouter([
     {
@@ -21,7 +23,14 @@ const router = createBrowserRouter([
                 path: "/register",
                 Component: Register
             },
-            
+            {
+                path: '/games',
+                Component: Games
+            },
+            {
+                path: '/games/:id',
+                Component: GameDetails
+            }
         ]
 
     }
