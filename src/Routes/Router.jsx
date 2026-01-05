@@ -7,6 +7,8 @@ import Games from "../Pages/Games";
 import GameDetails from "../Pages/GameDetails";
 import indie from "../Pages/indie";
 import NotFound from "../Pages/NotFound";
+import PrivateRoute from "./PrivateRoute";
+import Profile from "../Pages/Profile";
 
 const router = createBrowserRouter([
     {
@@ -32,12 +34,30 @@ const router = createBrowserRouter([
             },
             {
                 path: '/games/:id',
-                Component: GameDetails
+                element: (
+                    <PrivateRoute>
+                        <GameDetails></GameDetails>
+                    </PrivateRoute>
+                )
             },
             {
                 path:'/indie',
                 Component: indie
+            },
+            {
+                path: '/my-profile',
+                Component: Profile
+            },
+            {
+                path: "/my-profile",
+                element: (
+                    <PrivateRoute>
+                    <Profile />
+                    </PrivateRoute>
+                ),
             }
+            
+            
         ]
 
     }

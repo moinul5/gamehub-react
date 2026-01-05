@@ -1,9 +1,11 @@
 import { use } from "react";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthContext";
 
 const Login = () => {
-  const {loginUser} = use(AuthContext)
+  const {loginUser, GoogleLogin} = use(AuthContext)
+  const location = useLocation()
+  const navigate = useNavigate();
 
   const handleLogin =(e)=>{
     e.preventDefault()
@@ -12,12 +14,21 @@ const Login = () => {
     const password = e.target.password.value
 
     loginUser(email,password)
-    .then(console.log("success")
+    .then(()=>{
+      navigate(location.state?.from?.pathname || "/");
+      e.target.reset()
+    }
     )
-    .catch("error")
+    .catch()
 
-    e.target.reset()
   }
+
+  const handleGoogleLogin = () =>{
+    GoogleLogin()
+    .then()
+    .catch()
+  }
+  
   return (
     <div className="min-h-[calc(100vh-120px)] flex items-center justify-center">
       <div className="w-full max-w-md bg-slate-950 border border-slate-800 rounded-xl p-8 shadow-lg">
@@ -76,7 +87,7 @@ const Login = () => {
         <div className="divider text-slate-500">OR</div>
 
         {/* Google Login */}
-        <button className="btn btn-outline w-full border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black">
+        <button onClick={handleGoogleLogin} className="btn btn-outline w-full border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black">
           Continue with Google
         </button>
 
