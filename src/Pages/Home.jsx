@@ -3,8 +3,10 @@ import Banner from "../components/Banner";
 import GameCard from "../components/GameCard";
 import Newsletter from "../components/Newsletter";
 import Loader from "../components/Loader";
+import useTitle from "../components/useTitle";
 
 function Home() {
+  useTitle("GameHub | Home");
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 

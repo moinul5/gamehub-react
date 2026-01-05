@@ -5,10 +5,11 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Games from "../Pages/Games";
 import GameDetails from "../Pages/GameDetails";
-import indie from "../Pages/indie";
+import Indie from "../Pages/Indie";
 import NotFound from "../Pages/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import Profile from "../Pages/Profile";
+import UpdateProfile from "../Pages/UpdateProfile";
 
 const router = createBrowserRouter([
     {
@@ -42,11 +43,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/indie',
-                Component: indie
-            },
-            {
-                path: '/my-profile',
-                Component: Profile
+                Component: Indie
             },
             {
                 path: "/my-profile",
@@ -55,7 +52,16 @@ const router = createBrowserRouter([
                     <Profile />
                     </PrivateRoute>
                 ),
+            },
+            {
+                path: "/update-profile",
+                element: (
+                    <PrivateRoute>
+                    <UpdateProfile />
+                    </PrivateRoute>
+                ),
             }
+
             
             
         ]

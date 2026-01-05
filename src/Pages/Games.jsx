@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import GameCard from '../components/GameCard';
+import useTitle from '../components/useTitle';
+
 
 function Games() {
+  useTitle("GameHub | Games");
     const [games, setGames] = useState([])
       useEffect(() => {
         fetch("/games.json")

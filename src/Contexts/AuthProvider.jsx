@@ -30,8 +30,6 @@ function AuthProvider({children}) {
     setloading(true)
     return signOut(auth)
   }
-  console.log(user);
-  
 
   useEffect(()=>{
     const unsubcribe = onAuthStateChanged(auth,(currentUser)=>{
@@ -47,8 +45,8 @@ function AuthProvider({children}) {
     loginUser,
     loading,
     handleSignout,
-    GoogleLogin
-    
+    GoogleLogin,
+    setUser
   }
   return (
     <AuthContext value={authInfo}>
