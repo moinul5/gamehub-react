@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 const MainLayout = () => {
   return (
     <div
-      data-theme="dark"
+      data-theme="light"
       className="min-h-screen flex flex-col bg-slate-900 text-slate-200"
     >
       <Navbar />

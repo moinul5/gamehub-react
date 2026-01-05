@@ -1,108 +1,111 @@
 import { use } from "react";
 import { Navigate, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthContext";
+import { motion } from "framer-motion";
+import useTitle from "../components/useTitle";
 
 const Login = () => {
-  const {loginUser, GoogleLogin} = use(AuthContext)
-  const location = useLocation()
+  const { loginUser, GoogleLogin } = use(AuthContext);
+  const location = useLocation();
   const navigate = useNavigate();
-
-  const handleLogin =(e)=>{
-    e.preventDefault()
-    const email = e.target.email.value
-    
-    const password = e.target.password.value
-
-    loginUser(email,password)
-    .then(()=>{
-      navigate(location.state?.from?.pathname || "/");
-      e.target.reset()
-    }
-    )
-    .catch()
-
-  }
-
-  const handleGoogleLogin = () =>{
-    GoogleLogin()
-    .then()
-    .catch()
-  }
+  useTitle("GameHub | Login");
   
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+
+    const password = e.target.password.value;
+
+    loginUser(email, password)
+      .then(() => {
+        navigate(location.state?.from?.pathname || "/");
+        e.target.reset();
+      })
+      .catch();
+  };
+
+  const handleGoogleLogin = () => {
+    GoogleLogin().then().catch();
+  };
+
   return (
-    <div className="min-h-[calc(100vh-120px)] flex items-center justify-center">
-      <div className="w-full max-w-md bg-slate-950 border border-slate-800 rounded-xl p-8 shadow-lg">
+    <motion.div
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.4 }}
+    >
+      <div className="min-h-[calc(100vh-120px)] flex items-center justify-center">
+        <div className="w-full max-w-md bg-slate-950 border border-slate-800 rounded-xl p-8 shadow-lg">
+          {/* Title */}
+          <h2 className="text-2xl font-bold text-center mb-6">
+            Login to <span className="text-yellow-400">Game</span>Hub
+          </h2>
+          {/* Form */}
+          <form onSubmit={handleLogin} className="space-y-4">
+            {/* Email */}
+            <div>
+              <label className="label">
+                <span className="label-text text-slate-300">Email</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                className="input input-bordered w-full bg-slate-900 text-slate-200"
+              />
+            </div>
 
-        {/* Title */}
-        <h2 className="text-2xl font-bold text-center mb-6">
-          Login to <span className="text-yellow-400">Game</span>Hub
-        </h2>
+            {/* Password */}
+            <div>
+              <label className="label">
+                <span className="label-text text-slate-300">Password</span>
+              </label>
+              <input
+                name="password"
+                type="password"
+                placeholder="Enter your password"
+                className="input input-bordered w-full bg-slate-900 text-slate-200"
+              />
+            </div>
 
-        {/* Form */}
-        <form onSubmit={handleLogin} className="space-y-4">
+            {/* Forgot Password */}
+            <div className="text-right">
+              <NavLink
+                to="/forgot-password"
+                className="text-sm text-yellow-400 hover:underline"
+              >
+                Forgot password?
+              </NavLink>
+            </div>
 
-          {/* Email */}
-          <div>
-            <label className="label">
-              <span className="label-text text-slate-300">Email</span>
-            </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              className="input input-bordered w-full bg-slate-900 text-slate-200"
-            />
-          </div>
+            {/* Login Button */}
+            <button className="btn btn-warning w-full text-black font-semibold">
+              Login
+            </button>
+          </form>
 
-          {/* Password */}
-          <div>
-            <label className="label">
-              <span className="label-text text-slate-300">Password</span>
-            </label>
-            <input
-              name="password"
-              type="password"
-              placeholder="Enter your password"
-              className="input input-bordered w-full bg-slate-900 text-slate-200"
-            />
-          </div>
+          {/* Divider */}
+          <div className="divider text-slate-500">OR</div>
 
-          {/* Forgot Password */}
-          <div className="text-right">
-            <NavLink
-              to="/forgot-password"
-              className="text-sm text-yellow-400 hover:underline"
-            >
-              Forgot password?
-            </NavLink>
-          </div>
-
-          {/* Login Button */}
-          <button className="btn btn-warning w-full text-black font-semibold">
-            Login
-          </button>
-        </form>
-
-        {/* Divider */}
-        <div className="divider text-slate-500">OR</div>
-
-        {/* Google Login */}
-        <button onClick={handleGoogleLogin} className="btn btn-outline w-full border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black">
-          Continue with Google
-        </button>
-
-        {/* Register Link */}
-        <p className="text-center text-sm text-slate-400 mt-6">
-          Don’t have an account?{" "}
-          <NavLink
-            to="/register"
-            className="text-yellow-400 hover:underline"
+          {/* Google Login */}
+          <button
+            onClick={handleGoogleLogin}
+            className="btn btn-outline w-full border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black"
           >
-            Register
-          </NavLink>
-        </p>
+            Continue with Google
+          </button>
+
+          {/* Register Link */}
+          <p className="text-center text-sm text-slate-400 mt-6">
+            Don’t have an account?{" "}
+            <NavLink to="/register" className="text-yellow-400 hover:underline">
+              Register
+            </NavLink>
+          </p>
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

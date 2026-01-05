@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
 
 const GameCard = ({ game }) => {
   const navigate = useNavigate();
@@ -6,10 +8,16 @@ const GameCard = ({ game }) => {
   const { id, title, coverPhoto, ratings, category } = game;
 
   return (
+     <motion.div
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 200 }}
+      className="bg-slate-950 rounded-xl overflow-hidden cursor-pointer"
+    >
+
     <div
       onClick={() => navigate(`/games/${id}`)}
       className="cursor-pointer bg-slate-950 border border-slate-800 rounded-xl overflow-hidden hover:scale-[1.02] transition-transform duration-200"
-    >
+      >
       {/* Image */}
       <img
         src={coverPhoto}
@@ -38,6 +46,7 @@ const GameCard = ({ game }) => {
         </div>
       </div>
     </div>
+        </motion.div>
   );
 };
 

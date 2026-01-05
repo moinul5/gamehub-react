@@ -10,6 +10,7 @@ import NotFound from "../Pages/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import Profile from "../Pages/Profile";
 import UpdateProfile from "../Pages/UpdateProfile";
+import ForgotPassword from "../Pages/ForgetPassword";
 
 const router = createBrowserRouter([
     {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
                     <UpdateProfile />
                     </PrivateRoute>
                 ),
+            },
+            {
+                path: '/forgot-password',
+                Component: ForgotPassword
             }
 
             
